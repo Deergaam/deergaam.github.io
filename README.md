@@ -1,12 +1,11 @@
 # deergaam.github.io
-Everything from Deergaam's YouTube videos — the prompt, tools and files for each video.
+Everything from Deergaam's YouTube videos in one place — the prompts, tools, images and files.
 
 Live: https://deergaam.github.io
 
-## How it works
-- The home page shows the video(s).
-- Clicking a video opens its page: YouTube link, step-by-step notes, the prompt (with a copy button), and tools & files.
+## Adding a video
+Edit **`data/content.js`** only (instructions at the top of the file). Each video can have:
+- a **prompt** (shown in the Prompt Library, with a copy button)
+- **resources**: `tool`, `file` (put it in `assets/files/`), `image` (put it in `assets/images/`) or `link`
 
-## Editing
-Edit **`data/content.js`** only (instructions at the top of the file).
-Files go in `assets/files/`, images in `assets/images/`. No build step — push and GitHub Pages publishes it.
+No build step — push and GitHub Pages publishes it.

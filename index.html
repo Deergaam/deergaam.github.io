@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Deergaam — Prompts, Tools &amp; Files from the Videos</title>
-  <meta name="description" content="The prompts, tools and files from Deergaam's YouTube videos. Open a video and find everything you need to make it yourself.">
+  <meta name="description" content="Everything from Deergaam's YouTube videos in one place: the prompts, tools, images and files. Copy, download, and make it yourself.">
   <meta name="theme-color" content="#FAF9F5">
   <link rel="canonical" href="https://deergaam.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Deergaam">
   <meta property="og:title" content="Deergaam — Prompts, Tools & Files from the Videos">
-  <meta property="og:description" content="The prompts, tools and files from Deergaam's YouTube videos.">
+  <meta property="og:description" content="The prompts, tools, images and files from every Deergaam video.">
   <meta property="og:url" content="https://deergaam.github.io/">
   <meta property="og:image" content="https://deergaam.github.io/assets/brand/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -30,29 +30,67 @@
         <img src="assets/brand/logo-mark-orange.png" alt="" width="26" height="28">
         <span class="brand-word">Deergaam</span>
       </a>
-      <div data-header-action></div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+        <ul>
+          <li><a href="#projects" data-section="projects" data-filter="All">Videos</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="intro" aria-labelledby="intro-title">
-      <div class="container">
-        <p class="eyebrow">From the Deergaam videos</p>
-        <h1 id="intro-title" class="intro-title">Everything from the video, in <span class="accent">one place</span>.</h1>
-        <p class="intro-lead">Open the video to get the prompt, the tools and the files, with step-by-step notes.</p>
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1.5l1.9 7.2 6.5-3.6-3.6 6.5 7.2 1.9-7.2 1.9 3.6 6.5-6.5-3.6L12 22.5l-1.9-7.2-6.5 3.6 3.6-6.5L0 12.5l7.2-1.9-3.6-6.5 6.5 3.6z"/></svg></span>From the Deergaam videos</p>
+          <h1 id="hero-title" class="hero-title">Everything from the videos, in <span class="accent">one place</span>.</h1>
+          <p class="hero-lead">The prompts, tools, images and files I use in my YouTube videos. Copy them, download them, and make it yourself.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#featured">Watch the Latest Video</a>
+            <a class="btn btn-ghost" href="#projects" data-filter="All">See All Videos</a>
+          </div>
+          <ul class="hero-stats" data-hero-stats></ul>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <canvas class="hero-canvas" data-hero-canvas></canvas>
+        </div>
       </div>
     </section>
 
-    <section class="videos" aria-label="Videos">
-      <div class="container video-list" data-video-list>
+    <!-- FEATURED VIDEO -->
+    <section class="section" id="featured" aria-labelledby="featured-title">
+      <div class="container" data-featured>
         <!-- rendered from data/content.js -->
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="section section-alt" id="projects" aria-labelledby="projects-title">
+      <span id="tutorials" class="anchor-offset" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Watch &amp; make</p>
+            <h2 id="projects-title" class="section-title">Videos</h2>
+          </div>
+          <p class="section-intro">Every video has its own page with the prompt, the tools and the files behind it.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter videos by category" data-project-filters></div>
+        <p class="sr-only" aria-live="polite" data-project-status></p>
+        <div class="card-grid" data-project-grid></div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer" data-footer></footer>
 
-  <noscript><p class="noscript">This site needs JavaScript to show the videos.</p></noscript>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <noscript><p class="noscript">This site needs JavaScript to show videos, prompts and files.</p></noscript>
 
   <script src="data/content.js"></script>
   <script src="script.js"></script>

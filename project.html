@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Video — Deergaam</title>
-  <meta name="description" content="A Deergaam video: the YouTube link, step-by-step notes, the prompt, and the tools and files behind it.">
+  <title>Project — Deergaam</title>
+  <meta name="description" content="A Deergaam project: the video, the prompt, and the tools and files behind it.">
   <meta name="theme-color" content="#FAF9F5">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Deergaam">
@@ -26,7 +26,15 @@
         <img src="assets/brand/logo-mark-orange.png" alt="" width="26" height="28">
         <span class="brand-word">Deergaam</span>
       </a>
-      <div data-header-action></div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+        <ul>
+          <li><a href="./#projects">Videos</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -39,7 +47,7 @@
   <footer class="site-footer" data-footer></footer>
 
   <div class="toast" role="status" aria-live="polite" data-toast></div>
-  <noscript><p class="noscript">This site needs JavaScript to show the video page.</p></noscript>
+  <noscript><p class="noscript">This site needs JavaScript to show project details.</p></noscript>
 
   <script src="data/content.js"></script>
   <script src="script.js"></script>
