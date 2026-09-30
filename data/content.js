@@ -4,45 +4,32 @@
  *  This is the only file you need to edit to update the site.
  * ============================================================================
  *
- *  ADD A NEW VIDEO + PROMPT
- *  1. Copy one of the entries in `projects` below and paste it at the top of the list.
- *  2. Give it a unique `id` (lowercase, words-joined-with-hyphens). It becomes the page URL:
- *       project.html?id=your-id
- *  3. Fill in the fields:
- *       title        Card and page title.
- *       description  One or two sentences.
- *       category     One of the names in `categories` below.
- *       thumbnail    Path to an image in assets/thumbnails/ (16:9 works best).
- *                    Leave "" to use an automatically generated graphic.
- *       videoUrl     A YouTube link (watch, youtu.be or shorts link all work).
- *                    Leave "" to show a clearly labelled placeholder.
- *       featured     true = shown in the "Featured Tutorial" section (the first one is used).
- *       prompt       { title, description, text } — shown in the Prompt Library.
- *                    Use backticks (`) around `text` so it can span many lines.
- *                    Set prompt to null if the project has no prompt.
- *       resources    A list of tools, files, images and links from the video.
- *                    Shown on the video page and in "Tools & Files" on the home page.
- *                    Each one: { type, title, url, description }
- *                      type  "tool"  — an app or website (e.g. https://claude.ai)
- *                            "file"  — a download. Put it in assets/files/ and use
- *                                      url: "assets/files/your-file.zip"
- *                            "image" — a picture. Put it in assets/images/ and use
- *                                      url: "assets/images/your-image.jpg"
- *                            "link"  — any other page (article, source, docs)
- *                    Leave resources: [] if there is nothing to share.
- *       example      true = marks demo entries with an "Example" badge. Delete the
- *                    example entries (or set example: false) once you add real content.
- *  4. Save, reload the page. Done.
+ *  ADD THE YOUTUBE LINK
+ *    Paste it in `youtubeUrl` below (watch, youtu.be or shorts links all work).
  *
- *  SOCIAL LINKS: fill in `url`. Links with an empty url are hidden automatically.
+ *  ADD A NEW VIDEO
+ *    Copy the whole { ... } block in `videos`, paste it at the TOP of the list,
+ *    and change the fields. The newest video appears first on the home page.
+ *
+ *    id           Unique, lowercase-with-hyphens. Page URL: project.html?id=your-id
+ *    title        Video title.
+ *    description  One or two sentences.
+ *    thumbnail    Image in assets/thumbnails/ (16:9).
+ *    youtubeUrl   The YouTube link ("" = shows "coming soon").
+ *    steps        The explanation under the video: { title, text } per step.
+ *    prompt       { title, description, text }. Use backticks (`) around text.
+ *                 For more than one prompt use:  prompts: [ {...}, {...} ]
+ *    resources    Tools, files, images and links:  { type, title, url, description }
+ *                   type "tool"  — an app or website
+ *                        "file"  — put it in assets/files/,  url: "assets/files/name.zip"
+ *                        "image" — put it in assets/images/, url: "assets/images/name.jpg"
+ *                        "link"  — any other page
+ *
+ *  SOCIAL LINKS: fill in `url`. Empty ones are hidden. The YouTube one also
+ *  shows as a "YouTube channel" button in the header.
  * ============================================================================
  */
 window.DEERGAAM_CONTENT = {
-  site: {
-    name: "Deergaam",
-    tagline: "Exploring artificial intelligence and what it can do.",
-  },
-
   social: [
     { label: "YouTube",   url: "" },            // e.g. "https://www.youtube.com/@your-handle"
     { label: "Instagram", url: "" },
@@ -51,37 +38,37 @@ window.DEERGAAM_CONTENT = {
     { label: "GitHub",    url: "https://github.com/Deergaam" },
   ],
 
-  categories: ["Tutorials", "Motion Graphics", "Images", "Creative Experiments"],
-
-  projects: [
-    // ------------------------------------------------------------------ REAL
+  videos: [
     {
       id: "motion-graphics-59s",
       title: "Learn to Create AI Motion Graphics in Just 59 Seconds",
       description:
         "Create a Claude project, paste one prompt, customize the topic, length and style, then review, download and publish your own motion graphics video.",
-      category: "Tutorials",
       thumbnail: "assets/thumbnails/motion-graphics-59s.jpg",
-      videoUrl: "", // ← paste the YouTube URL here when the video is live
-      featured: true,
-      example: false,
-      resources: [
+      youtubeUrl: "", // ← paste the YouTube link here
+
+      steps: [
         {
-          type: "tool",
-          title: "Claude",
-          url: "https://claude.ai",
-          description: "Where the prompt runs. Create a Project, paste the prompt, then send your topic.",
+          title: "Create a project in Claude",
+          text: "Open claude.ai, go to Projects and create a new project for your videos.",
         },
         {
-          type: "image",
-          title: "Video thumbnail",
-          url: "assets/thumbnails/motion-graphics-59s.jpg",
+          title: "Paste the prompt",
+          text: "Copy the prompt below and paste it into the chat in your project.",
+        },
+        {
+          title: "Customize it",
+          text: "Replace [TOPIC], [LENGTH] and [STYLE] with your own idea, then send it.",
+        },
+        {
+          title: "Review, download and publish",
+          text: "Watch the result, ask Claude for any fixes, then download the video and publish it.",
         },
       ],
+
       prompt: {
         title: "AI Motion Graphics Video",
-        description:
-          "The full prompt from the 59-second tutorial. Fill in the topic, video length and visual style, then send it to Claude.",
+        description: "Fill in the topic, video length and visual style, then send it to Claude.",
         text: `You are the lead video editor and motion designer for my YouTube channel. Create a finished, polished motion graphics video from my idea. Build the animation, captions, transitions and sound design.
 
 Topic: [TOPIC] (e.g. Coffee prices worldwide)
@@ -115,118 +102,15 @@ DELIVERY
 • Before delivering, review the result: timing, spelling, readability and transitions. Fix any problems you find.
 • Make sensible creative decisions and finish the video without asking me to choose between options.`,
       },
-    },
 
-    // ------------------------------------------------------------------ EXAMPLES
-    // Demo entries that show how the layout works. Replace or delete them.
-    {
-      id: "example-data-story",
-      title: "Example: Animated Data Story",
-      description:
-        "Example entry. A bar chart that races through the years with smooth rank changes and clear labels.",
-      category: "Motion Graphics",
-      thumbnail: "",
-      videoUrl: "",
-      featured: false,
-      example: true,
-      prompt: {
-        title: "Animated Bar-Chart Race",
-        description: "Example prompt. Turns a small dataset into a short animated ranking video.",
-        text: `Create a 30-second animated bar-chart race from the data I paste below.
-
-Data: [PASTE A TABLE: category, year, value]
-Title: [CHART TITLE]
-Source: [WHERE THE DATA COMES FROM]
-
-• Smooth rank changes with eased motion, one year per second.
-• Large, readable labels and a running year counter.
-• One accent color for the leader; muted colors for the rest.
-• Show the data source in small text at the bottom.
-• If a value is missing, say so on screen instead of guessing.
-• Deliver a playable MP4 if possible, otherwise an HTML animation with export steps.`,
-      },
-    },
-    {
-      id: "example-image-series",
-      title: "Example: Cinematic AI Image Series",
-      description:
-        "Example entry. A set of images that share one lighting style, palette and character, so they feel like frames from the same film.",
-      category: "Images",
-      thumbnail: "",
-      videoUrl: "",
-      featured: false,
-      example: true,
-      prompt: {
-        title: "Consistent Image Series",
-        description: "Example prompt. Keeps style, palette and subject consistent across several images.",
-        text: `Design a series of [NUMBER] cinematic images about [SUBJECT].
-
-Keep these identical in every image:
-• Color palette: [e.g. deep navy, icy cyan, warm highlights]
-• Lighting: [e.g. soft rim light, light fog]
-• Lens and framing: [e.g. 35 mm, eye level]
-
-For each image, write:
-1. A one-line scene description.
-2. A detailed image prompt I can paste into an image generator.
-3. A short caption for social media.
-
-Make the series tell a small story from the first image to the last.`,
-      },
-    },
-    {
-      id: "example-creative-experiment",
-      title: "Example: Poem to Visual Story",
-      description:
-        "Example entry. An experiment that turns a short poem into a storyboard, a color script and a narrated animatic.",
-      category: "Creative Experiments",
-      thumbnail: "",
-      videoUrl: "",
-      featured: false,
-      example: true,
-      prompt: {
-        title: "Poem to Storyboard",
-        description: "Example prompt. Breaks a text into scenes, visuals and timing for a short video.",
-        text: `Turn the text below into a visual story.
-
-Text: [PASTE A SHORT POEM OR PARAGRAPH]
-
-1. Split it into 6 to 8 scenes.
-2. For each scene give: the line of text, what we see, camera movement, and mood.
-3. Suggest one color palette for the whole piece and explain why it fits.
-4. Write narration timing so the whole story lasts about [LENGTH] seconds.
-5. Finish with a one-sentence idea for the final frame.`,
-      },
-    },
-    {
-      id: "example-prompt-basics",
-      title: "Example: Writing Better Prompts",
-      description:
-        "Example entry. A short tutorial about giving AI a clear goal, format, and constraints, and asking it to check its own work.",
-      category: "Tutorials",
-      thumbnail: "",
-      videoUrl: "",
-      featured: false,
-      example: true,
-      prompt: {
-        title: "Prompt Template: Goal, Format, Checks",
-        description: "Example prompt. A reusable structure for almost any creative task.",
-        text: `Goal: [WHAT YOU WANT TO MAKE, AND FOR WHOM]
-
-Context:
-• [IMPORTANT BACKGROUND OR FILES]
-
-Format:
-• [LENGTH, SIZE OR FILE TYPE]
-• [TONE AND STYLE]
-
-Constraints:
-• [WHAT TO AVOID]
-
-Before you finish:
-• Check the result against the goal and the format.
-• Fix anything that does not match, then deliver the final version.`,
-      },
+      resources: [
+        {
+          type: "tool",
+          title: "Claude",
+          url: "https://claude.ai",
+          description: "Where the prompt runs. Create a project, paste the prompt, then send your topic.",
+        },
+      ],
     },
   ],
 };
