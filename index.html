@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon-orange.png">
   <link rel="preload" href="assets/fonts/source-serif-4-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,7 +51,7 @@
           <h1 id="hero-title" class="hero-title">Everything from the videos, in <span class="accent">one place</span>.</h1>
           <p class="hero-lead">The prompts, tools, images and files I use in my YouTube videos. Copy them, download them, and make it yourself.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#featured">Watch the Latest Video</a>
+            <a class="btn btn-primary" href="#featured" data-latest-link>Watch the Latest Video</a>
             <a class="btn btn-ghost" href="#projects" data-filter="All">See All Videos</a>
           </div>
           <ul class="hero-stats" data-hero-stats></ul>
@@ -93,6 +93,6 @@
   <noscript><p class="noscript">This site needs JavaScript to show videos, prompts and files.</p></noscript>
 
   <script src="data/content.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

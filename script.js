@@ -84,14 +84,16 @@
       <div class="gallery-cap"><span>${esc(r.title)}</span><a href="${esc(r.url)}" download>${ICON.download}Download</a></div>
     </li>`).join('')}</ul>`;
   }
-  function includesHTML(p) {
+  // `linked`: each item links to its section on the video page (cards are already clickable as a whole)
+  function includesHTML(p, linked) {
     const rs = resourcesOf(p), items = [];
-    if (promptOf(p)) items.push([ICON.prompt, 'Prompt']);
+    if (promptOf(p)) items.push([ICON.prompt, 'Prompt', '#prompt']);
     Object.keys(RES_TYPES).forEach((t) => {
       const n = rs.filter((r) => r.type === t).length;
-      if (n) items.push([ICON[t], n === 1 ? RES_TYPES[t].label : `${n} ${RES_TYPES[t].plural.toLowerCase()}`]);
+      if (n) items.push([ICON[t], n === 1 ? RES_TYPES[t].label : `${n} ${RES_TYPES[t].plural.toLowerCase()}`, '#resources']);
     });
-    return items.length ? `<ul class="card-includes" aria-label="Includes">${items.map(([i, l]) => `<li>${i}${esc(l)}</li>`).join('')}</ul>` : '';
+    return items.length ? `<ul class="card-includes" aria-label="Includes">${items.map(([i, l, h]) =>
+      `<li>${linked ? `<a href="${projectUrl(p)}${h}">${i}${esc(l)}</a>` : `${i}${esc(l)}`}</li>`).join('')}</ul>` : '';
   }
 
   // ---------------------------------------------------------------- generated thumbnails (used when `thumbnail` is empty)
@@ -157,6 +159,13 @@
       }
     } catch (e) { /* not a URL */ }
     return null;
+  }
+  // home page: the video is a link to its page (the player lives there)
+  function videoLinkHTML(p) {
+    const yt = youtubeId((p.videoUrl || '').trim());
+    const poster = p.thumbnail || !yt ? thumbHTML(p, true) : `<img src="https://i.ytimg.com/vi/${esc(yt)}/hqdefault.jpg" alt="" decoding="async">`;
+    return `<a class="video video-link" href="${projectUrl(p)}" aria-label="Open the video page: ${esc(p.title)}">
+      ${poster}<span class="play-btn" aria-hidden="true">${ICON.play}</span></a>`;
   }
   function videoHTML(p) {
     const url = (p.videoUrl || '').trim();
@@ -270,10 +279,10 @@
     requestAnimationFrame(() => $$('.prompt-card', root).forEach((card) => {
       const body = $('.prompt-body', card), pre = $('pre', card), btn = $('[data-toggle]', card);
       if (!body || !pre || !btn) return;
-      const wasCollapsed = body.classList.contains('is-collapsed');
-      body.classList.add('is-collapsed');
-      const short = pre.scrollHeight <= body.clientHeight + 4;
-      body.classList.toggle('is-collapsed', wasCollapsed && !short);
+      // compare with the collapsed height (9.6em, see .prompt-body.is-collapsed) without collapsing it:
+      // collapsing shrinks the page for a moment and can throw off the scroll to #prompt / #resources
+      const short = pre.scrollHeight <= parseFloat(getComputedStyle(body).fontSize) * 9.6 + 4;
+      if (short) body.classList.remove('is-collapsed');
       btn.hidden = short;
     }));
   }
@@ -352,15 +361,17 @@
     const featured = PROJECTS.find((p) => p.featured) || PROJECTS[0];
     if (!featured) featuredRoot.closest('section').hidden = true;
     else {
+      const latest = $('[data-latest-link]');
+      if (latest) latest.href = projectUrl(featured);
       const hasPrompt = PROMPTS.some((x) => x.project.id === featured.id);
       featuredRoot.innerHTML = `<div class="featured reveal">
-        <div class="featured-media">${videoHTML(featured)}</div>
+        <div class="featured-media">${videoLinkHTML(featured)}</div>
         <div class="featured-copy">
           <p class="eyebrow">Latest video</p>
           <div class="featured-meta"><span class="chip">${esc(featured.category)}</span>${featured.example ? '<span class="badge-example">Example</span>' : ''}</div>
-          <h2 id="featured-title" class="featured-title">${esc(featured.title)}</h2>
+          <h2 id="featured-title" class="featured-title"><a href="${projectUrl(featured)}">${esc(featured.title)}</a></h2>
           <p class="lead">${esc(featured.description)}</p>
-          ${includesHTML(featured)}
+          ${includesHTML(featured, true)}
           <div class="featured-actions">
             ${hasPrompt ? `<a class="btn btn-primary" href="${projectUrl(featured)}#prompt">Get the Full Prompt</a>` : ''}
             <a class="btn btn-ghost" href="${projectUrl(featured)}${resourcesOf(featured).length ? '#resources' : ''}">${resourcesOf(featured).length ? 'Tools &amp; Files' : 'Video Page'}</a>
@@ -565,6 +576,8 @@
 
   // ---------------------------------------------------------------- boot
   initShell();
+  const smooth = () => setTimeout(() => document.documentElement.classList.add('is-loaded'), 50);
+  if (document.readyState === 'complete') smooth(); else window.addEventListener('load', smooth);
   if (PAGE === 'home') initHome();
   else if (PAGE === 'project') initProject();
 })();

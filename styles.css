@@ -39,7 +39,9 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); -webkit-text-size-adjust: 100%; }
+html { scroll-padding-top: calc(var(--header-h) + 16px); -webkit-text-size-adjust: 100%; }
+/* smooth only once loaded, so links like project.html?id=…#prompt land straight on the section */
+html.is-loaded { scroll-behavior: smooth; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
   font: 400 17px/1.65 var(--font-body);
@@ -140,6 +142,8 @@ main:focus { outline: none; }
 /* ---------- featured ---------- */
 .featured { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
 .featured-title { font-size: clamp(28px, 3.2vw, 40px); }
+.featured-title a { color: inherit; text-decoration: none; }
+.featured-title a:hover { color: var(--orange-strong); }
 .featured-copy p.lead { margin-top: 16px; color: var(--text-2); font-size: 18px; }
 .featured-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .featured-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
@@ -155,6 +159,10 @@ main:focus { outline: none; }
 }
 .play-btn svg { width: 28px; height: 28px; margin-left: 5px; fill: currentColor; }
 .video-facade:hover .play-btn { transform: scale(1.06); }
+.video-link { display: block; }
+.video-link img { transition: transform 0.6s var(--ease); }
+.video-link:hover img { transform: scale(1.02); }
+.video-link:hover .play-btn { transform: scale(1.08); }
 .video-placeholder::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 20, 19, 0) 45%, rgba(20, 20, 19, 0.45)); }
 .placeholder-note {
   position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 1;
@@ -196,6 +204,8 @@ main:focus { outline: none; }
 .card-includes { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; margin: 2px 0 0; padding: 0; color: var(--text-3); font-size: 13.5px; }
 .card-includes li { display: inline-flex; align-items: center; gap: 6px; }
 .card-includes svg { width: 15px; height: 15px; fill: none; stroke: var(--orange); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.card-includes a { display: inline-flex; align-items: center; gap: 6px; color: inherit; text-decoration: none; }
+.card-includes a:hover { color: var(--orange-strong); text-decoration: underline; }
 .card-foot { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--orange-strong); font-weight: 600; font-size: 14.5px; }
 .card-foot .arrow { transition: transform 0.3s var(--ease); }
 .card:hover .card-foot .arrow { transform: translateX(4px); }
@@ -365,7 +375,7 @@ main:focus { outline: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, html.is-loaded { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
