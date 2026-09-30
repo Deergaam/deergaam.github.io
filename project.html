@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project — Deergaam</title>
+  <meta name="description" content="A Deergaam project: the video, the prompt, and the tools and files behind it.">
+  <meta name="theme-color" content="#FAF9F5">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Deergaam">
+  <meta property="og:image" content="https://deergaam.github.io/assets/brand/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-orange-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/brand/favicon-orange-64.png">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon-orange.png">
+  <link rel="preload" href="assets/fonts/source-serif-4-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Deergaam — home">
+        <img src="assets/brand/logo-mark-orange.png" alt="" width="26" height="28">
+        <span class="brand-word">Deergaam</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+        <ul>
+          <li><a href="./#projects">Videos</a></li>
+          <li><a href="./#prompts">Prompts</a></li>
+          <li><a href="./#resources">Tools &amp; Files</a></li>
+          <li><a href="./#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container project-page" data-project-root>
+      <!-- rendered from data/content.js -->
+    </div>
+  </main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <noscript><p class="noscript">This site needs JavaScript to show project details.</p></noscript>
+
+  <script src="data/content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

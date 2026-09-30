@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deergaam — Prompts, Tools &amp; Files from the Videos</title>
+  <meta name="description" content="Everything from Deergaam's YouTube videos in one place: the prompts, tools, images and files. Copy, download, and make it yourself.">
+  <meta name="theme-color" content="#FAF9F5">
+  <link rel="canonical" href="https://deergaam.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Deergaam">
+  <meta property="og:title" content="Deergaam — Prompts, Tools & Files from the Videos">
+  <meta property="og:description" content="The prompts, tools, images and files from every Deergaam video.">
+  <meta property="og:url" content="https://deergaam.github.io/">
+  <meta property="og:image" content="https://deergaam.github.io/assets/brand/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-orange-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/brand/favicon-orange-64.png">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon-orange.png">
+  <link rel="preload" href="assets/fonts/source-serif-4-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Deergaam — home">
+        <img src="assets/brand/logo-mark-orange.png" alt="" width="26" height="28">
+        <span class="brand-word">Deergaam</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary" data-nav>
+        <ul>
+          <li><a href="#projects" data-section="projects" data-filter="All">Videos</a></li>
+          <li><a href="#prompts" data-section="prompts">Prompts</a></li>
+          <li><a href="#resources" data-section="resources">Tools &amp; Files</a></li>
+          <li><a href="#about" data-section="about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1.5l1.9 7.2 6.5-3.6-3.6 6.5 7.2 1.9-7.2 1.9 3.6 6.5-6.5-3.6L12 22.5l-1.9-7.2-6.5 3.6 3.6-6.5L0 12.5l7.2-1.9-3.6-6.5 6.5 3.6z"/></svg></span>From the Deergaam videos</p>
+          <h1 id="hero-title" class="hero-title">Everything from the videos, in <span class="accent">one place</span>.</h1>
+          <p class="hero-lead">The prompts, tools, images and files I use in my YouTube videos. Copy them, download them, and make it yourself.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#prompts">Browse Prompts</a>
+            <a class="btn btn-ghost" href="#projects" data-filter="All">See All Videos</a>
+          </div>
+          <ul class="hero-stats" data-hero-stats></ul>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <canvas class="hero-canvas" data-hero-canvas></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED VIDEO -->
+    <section class="section" id="featured" aria-labelledby="featured-title">
+      <div class="container" data-featured>
+        <!-- rendered from data/content.js -->
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="section section-alt" id="projects" aria-labelledby="projects-title">
+      <span id="tutorials" class="anchor-offset" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Watch &amp; make</p>
+            <h2 id="projects-title" class="section-title">Videos</h2>
+          </div>
+          <p class="section-intro">Every video has its own page with the prompt, the tools and the files behind it.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter videos by category" data-project-filters></div>
+        <p class="sr-only" aria-live="polite" data-project-status></p>
+        <div class="card-grid" data-project-grid></div>
+      </div>
+    </section>
+
+    <!-- PROMPT LIBRARY -->
+    <section class="section" id="prompts" aria-labelledby="prompts-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Copy · customize · create</p>
+            <h2 id="prompts-title" class="section-title">Prompt Library</h2>
+          </div>
+          <p class="section-intro">Every prompt used in the videos. Open one, fill in the brackets, and paste it into your AI tool.</p>
+        </div>
+        <div class="prompt-controls">
+          <div class="search">
+            <label for="prompt-search" class="sr-only">Search prompts</label>
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="prompt-search" type="search" placeholder="Search prompts…" autocomplete="off" data-prompt-search>
+          </div>
+          <div class="filters" role="group" aria-label="Filter prompts by category" data-prompt-filters></div>
+        </div>
+        <p class="result-count" aria-live="polite" data-prompt-status></p>
+        <div class="prompt-list" data-prompt-list></div>
+      </div>
+    </section>
+
+    <!-- TOOLS & FILES -->
+    <section class="section section-alt" id="resources" aria-labelledby="resources-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Download · open · try</p>
+            <h2 id="resources-title" class="section-title">Tools &amp; Files</h2>
+          </div>
+          <p class="section-intro">The apps, downloads, images and links mentioned in the videos.</p>
+        </div>
+        <div class="filters resource-controls" role="group" aria-label="Filter by type" data-resource-filters></div>
+        <p class="sr-only" aria-live="polite" data-resource-status></p>
+        <ul class="resource-list" data-resource-list></ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-mark" aria-hidden="true">
+          <img src="assets/brand/logo-mark-orange-large.png" alt="" width="240" height="254" loading="lazy">
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title" class="section-title">About Deergaam</h2>
+          <p class="about-text">Deergaam is an educational and entertainment channel exploring artificial intelligence and what it can do. Some videos explain the process. Others showcase the results, from motion graphics and visual stories to creative experiments. This site keeps everything you need to follow along.</p>
+          <ul class="about-list" data-about-categories></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <noscript><p class="noscript">This site needs JavaScript to show videos, prompts and files.</p></noscript>
+
+  <script src="data/content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
